@@ -1,26 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import NavBar from '../src/components/other/Navbar';
+
+import Team from './components/pages/Team';
+import Enterprise from './components/pages/Enterprise';
+import Trending from './components/pages/Explore';
+import Marketplace from './components/pages/Marketplace';
+import Pricing from './components/pages/Pricing';
+
+export default class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      search : '',
+    }
+    this.setSearch = this.setSearch.bind(this);
+  }
+
+  setSearch(value){
+    this.setState({search : value});
+  }
+
+  render() {
+    return (
+      <div>   
+      <Router>
+      <NavBar setSearch={this.setSearch}/>        
+        <Switch>
+          <Route path="/team">
+          <Team /> 
+          </Route>
+          <Route path="/enterprise">
+          <Enterprise />
+          </Route>
+          <Route path="/explore">
+            <Trending search={this.state.search}/>
+          </Route>
+          <Route path="/marketplace">
+            <Marketplace />
+          </Route>
+          <Route path="/pricing">
+            <Pricing />
+          </Route>
+        </Switch>
+      </Router>
     </div>
-  );
+    )
+  }
 }
 
-export default App;
+
