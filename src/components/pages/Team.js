@@ -4,7 +4,7 @@ import Banner from '../other/Banner';
 export default function Team() {
     return (
         <div>
-            <Banner name='Team' />
+            <Banner name='Team'/>
         </div>
     )
 }
