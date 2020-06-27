@@ -27,9 +27,10 @@ export default class Repos extends Component {
           this.setState({ search: nextProps.search });
         }
         let lang = this.state.search;
-        this.fetchRepos('desc', lang);
-        this.fetchRepos('asc', lang);
-        
+        if(lang !== ''){
+            this.fetchRepos('desc', lang);
+            this.fetchRepos('asc', lang);
+        }
     }
 
     fetchRepos(order, lang){
